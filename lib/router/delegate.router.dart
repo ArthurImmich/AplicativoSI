@@ -74,6 +74,7 @@ class Delegate extends RouterDelegate<PageConfiguration>
     if (shouldAddPage) {
       _pages.add(_newPage(pageConfig));
     }
+    notifyListeners();
   }
 
   //Clears _page list and adds a new page

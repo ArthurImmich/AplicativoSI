@@ -30,8 +30,7 @@ class _SplashState extends State<Splash> {
         // (Router.of(context).routerDelegate as Delegate)
         //     .replace(homePageConfig);
         // } else {
-        (Router.of(context).routerDelegate as Delegate)
-            .replace(loginPageConfig);
+        (Router.of(context).routerDelegate as Delegate).replace(homePageConfig);
         // }
       });
     }
