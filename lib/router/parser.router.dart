@@ -7,36 +7,33 @@ class Parser extends RouteInformationParser<PageConfiguration> {
   @override
   Future<PageConfiguration> parseRouteInformation(
       RouteInformation routeInformation) async {
-    final uri = Uri.parse(routeInformation.location!);
+    // final uri = Uri.parse(routeInformation.location!);
     //if there is no URI, returns splash
-    if (uri.pathSegments.isEmpty) {
-      return splashPageConfig;
-    }
-    final path = "/" + uri.pathSegments[0];
+    // if (uri.pathSegments.isEmpty) {
+    return splashPageConfig;
+    // }
+    // final path = "/" + uri.pathSegments[0];
 
-    switch (path) {
-      case SplashPath:
-        return splashPageConfig;
-      case LoginPath:
-        return loginPageConfig;
-      case CreateAccountPath:
-        return createAccountPageConfig;
-      case HomePath:
-        return homePageConfig;
-      case ListProductsPath:
-        listProductsPageConfig.path =
-            ListProductsPath + '/' + uri.pathSegments[1];
-        return listProductsPageConfig;
-      case DetailsPath:
-        detailsPageConfig.path = DetailsPath + '/' + uri.pathSegments[1];
-        return detailsPageConfig;
-      case CartPath:
-        return cartPageConfig;
-      case CheckoutPath:
-        return checkoutPageConfig;
-      default:
-        return splashPageConfig;
-    }
+    // switch (path) {
+    //   case splashPath:
+    //     return splashPageConfig;
+    //   case loginPath:
+    //     return loginPageConfig;
+    //   case registrationPath:
+    //     return registrationPageConfig;
+    //   case homePath:
+    //     return homePageConfig;
+    //   case schedulesPath:
+    //     return schedulesPageConfig;
+    //   case eventsPath:
+    //     return eventsPageConfig;
+    //   case filesPath:
+    //     return filesPageConfig;
+    //   case contactsPath:
+    //     return contactsPageConfig;
+    //   default:
+    //     return splashPageConfig;
+    // }
   }
 
   //Takes a navigation state and then convert it into a url.
