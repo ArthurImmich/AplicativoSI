@@ -6,10 +6,15 @@ class EventosBloc {
   late List<Event> eventos;
   late final EventsProvider _eventsProvider;
   late final StreamController<Event> _stateStreamController;
+  static final EventosBloc _eventosBloc = EventosBloc._internal();
 
-  EventosBloc() : _stateStreamController = StreamController<Event>() {
-    _eventsProvider = EventsProvider();
+  factory EventosBloc() {
+    return _eventosBloc;
   }
+
+  EventosBloc._internal()
+      : _eventsProvider = EventsProvider(),
+        _stateStreamController = StreamController<Event>();
 
   StreamSink<Event> get _eventsBlocSink => _stateStreamController.sink;
   Stream<Event> get eventsBlocStream => _stateStreamController.stream;
