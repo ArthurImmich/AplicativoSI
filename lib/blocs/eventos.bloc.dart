@@ -2,17 +2,17 @@ import 'dart:async';
 import 'package:aplicativosi/models/event.model.dart';
 import 'package:aplicativosi/resources/events.provider.dart';
 
-class EventosBloc {
+class EventsBloc {
   late List<Event> eventos;
   late final EventsProvider _eventsProvider;
   late final StreamController<Event> _stateStreamController;
-  static final EventosBloc _eventosBloc = EventosBloc._internal();
+  static final EventsBloc _eventosBloc = EventsBloc._internal();
 
-  factory EventosBloc() {
+  factory EventsBloc() {
     return _eventosBloc;
   }
 
-  EventosBloc._internal()
+  EventsBloc._internal()
       : _eventsProvider = EventsProvider(),
         _stateStreamController = StreamController<Event>();
 
