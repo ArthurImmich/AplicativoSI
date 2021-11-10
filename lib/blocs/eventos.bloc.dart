@@ -8,9 +8,7 @@ class EventsBloc {
   late final StreamController<Event> _stateStreamController;
   static final EventsBloc _eventosBloc = EventsBloc._internal();
 
-  factory EventsBloc() {
-    return _eventosBloc;
-  }
+  factory EventsBloc() => _eventosBloc;
 
   EventsBloc._internal()
       : _eventsProvider = EventsProvider(),
