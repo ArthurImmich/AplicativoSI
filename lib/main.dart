@@ -46,6 +46,31 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-        routeInformationParser: _parser, routerDelegate: _delegate);
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: const Color.fromRGBO(73, 114, 177, 1),
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          titleTextStyle: TextStyle(
+            fontSize: 24,
+            letterSpacing: 0.25,
+            fontWeight: FontWeight.w500,
+            color: Colors.white,
+          ),
+          toolbarHeight: 100,
+          backgroundColor: Color.fromRGBO(73, 114, 177, 1),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(
+              const Color.fromRGBO(73, 114, 177, 1),
+            ),
+          ),
+        ),
+      ),
+      routeInformationParser: _parser,
+      routerDelegate: _delegate,
+      backButtonDispatcher: _backButtonDispatcher,
+    );
   }
 }

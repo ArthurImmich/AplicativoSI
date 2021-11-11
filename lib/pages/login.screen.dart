@@ -1,18 +1,23 @@
 import 'package:aplicativosi/router/delegate.router.dart';
 import 'package:aplicativosi/router/pages.router.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
   @override
   LoginState createState() => LoginState();
 }
 
 class LoginState extends State<Login> {
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  late Delegate _delegate;
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    _delegate = Router.of(context).routerDelegate as Delegate;
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -24,8 +29,8 @@ class LoginState extends State<Login> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(bottom: 46.0),
-                      child: Image.network(
-                        'https://www.ufsm.br/app/uploads/sites/333/2018/11/si_s%C3%ADmbolo.png',
+                      child: Image.asset(
+                        'assets/logo/logo.png',
                         height: 150,
                       ),
                     ),
@@ -34,12 +39,14 @@ class LoginState extends State<Login> {
                       child: TextFormField(
                         controller: _nameController,
                         decoration: const InputDecoration(
-                            border: OutlineInputBorder(), hintText: "Nome"),
+                            border: OutlineInputBorder(),
+                            hintText: "Matrícula / CPF"),
                       ),
                     ),
-                    const TextField(
+                    TextField(
                       obscureText: true,
-                      decoration: InputDecoration(
+                      controller: _passwordController,
+                      decoration: const InputDecoration(
                           border: OutlineInputBorder(), hintText: "Senha"),
                     ),
                     Padding(
@@ -47,7 +54,8 @@ class LoginState extends State<Login> {
                       child: Align(
                         alignment: Alignment.topRight,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () => launch(
+                              'https://portal.ufsm.br/usuario/esqueciSenha.html'),
                           child: Text(
                             "Esqueceu a senha?",
                             style: Theme.of(context).textTheme.bodyText1,
@@ -55,25 +63,10 @@ class LoginState extends State<Login> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: ElevatedButton(
-                        onPressed: () =>
-                            (Router.of(context).routerDelegate as Delegate)
-                                .push(homePageConfig),
-                        child: const Text(
-                          "Login",
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(double.infinity, 42),
-                        ),
-                      ),
-                    ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () => _delegate.replace(homePageConfig),
                       child: const Text(
-                        "Criar conta",
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        "Login",
                       ),
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(double.infinity, 42),
