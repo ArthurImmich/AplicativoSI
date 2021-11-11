@@ -6,10 +6,14 @@ class EventsBloc {
   late List<Event> eventos;
   late final EventsProvider _eventsProvider;
   late final StreamController<Event> _stateStreamController;
-  static final EventsBloc _eventosBloc = EventsBloc._internal();
+  static late final EventsBloc? _eventsBloc;
 
-  factory EventsBloc() => _eventosBloc;
+  //??= creates a new object of EventsBloc only if _eventsBloc is null;
+  //factory cosntructor ensures to return the same instace of _eventsBloc
+  //everytime it is called;
+  factory EventsBloc() => _eventsBloc ??= EventsBloc._internal();
 
+  //internal constructor used to build the first and only instance of _eventsBloc
   EventsBloc._internal()
       : _eventsProvider = EventsProvider(),
         _stateStreamController = StreamController<Event>();

@@ -28,177 +28,353 @@ class _HomeState extends State<Home> {
       title: 'Lorem ipsum dolor...',
       description: 'Lorem ipsum dolor...',
     ),
+    Event(
+      title: 'Lorem ipsum dolor...',
+      description: 'Lorem ipsum dolor...',
+    ),
+    Event(
+      title: 'Lorem ipsum dolor...',
+      description: 'Lorem ipsum dolor...',
+    ),
+    Event(
+      title: 'Lorem ipsum dolor...',
+      description: 'Lorem ipsum dolor...',
+    ),
+    Event(
+      title: 'Lorem ipsum dolor...',
+      description: 'Lorem ipsum dolor...',
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16),
+        body: SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 20),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       'Olá Undefined!',
-                      style: Theme.of(context).textTheme.headline4,
+                      style: Theme.of(context).textTheme.headline5,
                     ),
-                    Container(
-                      width: 72,
-                      height: 72,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: Image.network(
+                    const CircleAvatar(
+                      radius: 36,
+                      backgroundImage: NetworkImage(
                         'https://picsum.photos/seed/891/600',
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
-              GridView(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 1.5,
-                ),
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: [
-                  InkResponse(
-                    onTap: () => (Router.of(context).routerDelegate as Delegate)
-                        .push(schedulesPageConfig),
-                    child: Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: const Color(0xFFF5F5F5),
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(48),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Horários',
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                      ),
-                    ),
-                  ),
-                  InkResponse(
-                    onTap: () => (Router.of(context).routerDelegate as Delegate)
-                        .push(eventsPageConfig),
-                    child: Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: const Color(0xFFF5F5F5),
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(48),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Eventos',
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                      ),
-                    ),
-                  ),
-                  InkResponse(
-                    onTap: () => (Router.of(context).routerDelegate as Delegate)
-                        .push(filesPageConfig),
-                    child: Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: const Color(0xFFF5F5F5),
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(48),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Arquivos',
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                      ),
-                    ),
-                  ),
-                  InkResponse(
-                    onTap: () => (Router.of(context).routerDelegate as Delegate)
-                        .push(schedulesPageConfig),
-                    child: Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      borderOnForeground: true,
-                      elevation: 0,
-                      color: const Color(0xFFF5F5F5),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(48),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Contatos',
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
+            ),
+            SliverGrid(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 10.0,
+                crossAxisSpacing: 10.0,
+                childAspectRatio: 1.0,
               ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
+              delegate: SliverChildListDelegate([
+                InkResponse(
+                  onTap: () => (Router.of(context).routerDelegate as Delegate)
+                      .push(schedulesPageConfig),
+                  child: Card(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    color: const Color(0xFFF5F5F5),
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(48),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Horários',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                    ),
+                  ),
+                ),
+                InkResponse(
+                  onTap: () => (Router.of(context).routerDelegate as Delegate)
+                      .push(eventsPageConfig),
+                  child: Card(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    color: const Color(0xFFF5F5F5),
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(48),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Eventos',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                    ),
+                  ),
+                ),
+                InkResponse(
+                  onTap: () => (Router.of(context).routerDelegate as Delegate)
+                      .push(filesPageConfig),
+                  child: Card(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    color: const Color(0xFFF5F5F5),
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(48),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Arquivos',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                    ),
+                  ),
+                ),
+                InkResponse(
+                  onTap: () => (Router.of(context).routerDelegate as Delegate)
+                      .push(schedulesPageConfig),
+                  child: Card(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    borderOnForeground: true,
+                    elevation: 0,
+                    color: const Color(0xFFF5F5F5),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(48),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Contatos',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                    ),
+                  ),
+                ),
+              ]),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 24, bottom: 16),
                 child: Text(
                   'Próximos Eventos',
-                  textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headline5,
                 ),
               ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
-                  child: ListView.builder(
-                    itemCount: _events.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: ListTile(
-                          onTap: () {},
-                          title: Text(
-                            _events[index].title!,
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                          subtitle: Text(
-                            _events[index].description!,
-                            style: Theme.of(context).textTheme.subtitle2,
-                          ),
-                          trailing: const Icon(
-                            Icons.arrow_forward_ios,
-                            color: Color(0xFF303030),
-                            size: 20,
-                          ),
-                          tileColor: const Color(0xFFF5F5F5),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(48),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              )
-            ],
-          ),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: ListTile(
+                      onTap: () {},
+                      title: Text(
+                        _events[index].title!,
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      subtitle: Text(
+                        _events[index].description!,
+                        style: Theme.of(context).textTheme.subtitle2,
+                      ),
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                        color: Color(0xFF303030),
+                        size: 20,
+                      ),
+                      tileColor: const Color(0xFFF5F5F5),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(48),
+                      ),
+                    ),
+                  );
+                },
+                childCount: _events.length,
+              ),
+            ),
+          ],
         ),
       ),
-    );
+    )
+
+        // SafeArea(
+        // child: Center(
+        //   child: SingleChildScrollView(
+        //     child: Column(
+        //       mainAxisSize: MainAxisSize.max,
+        //       mainAxisAlignment: MainAxisAlignment.start,
+        //       crossAxisAlignment: CrossAxisAlignment.start,
+        //       children: [
+        //         Padding(
+        //           padding: const EdgeInsets.all(16),
+        //           child: Row(
+        //             mainAxisSize: MainAxisSize.max,
+        //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //             children: [
+        //               Text(
+        //                 'Olá Undefined!',
+        //                 style: Theme.of(context).textTheme.headline4,
+        //               ),
+        //               const CircleAvatar(
+        //                 radius: 46,
+        //                 backgroundImage: NetworkImage(
+        //                   'https://picsum.photos/seed/891/600',
+        //                 ),
+        //               )
+        //             ],
+        //           ),
+        //         ),
+        //         // GridView(
+        //         //   padding: const EdgeInsets.symmetric(horizontal: 16),
+        //         //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        //         //     crossAxisCount: 2,
+        //         //     crossAxisSpacing: 10,
+        //         //     mainAxisSpacing: 10,
+        //         //     childAspectRatio: 1.5,
+        //         //   ),
+        //         //   shrinkWrap: true,
+        //         //   scrollDirection: Axis.vertical,
+        //         //   children: [
+        //         //     InkResponse(
+        //         //       onTap: () =>
+        //         //           (Router.of(context).routerDelegate as Delegate)
+        //         //               .push(schedulesPageConfig),
+        //         //       child: Card(
+        //         //         clipBehavior: Clip.antiAliasWithSaveLayer,
+        //         //         color: const Color(0xFFF5F5F5),
+        //         //         elevation: 0,
+        //         //         shape: RoundedRectangleBorder(
+        //         //           borderRadius: BorderRadius.circular(48),
+        //         //         ),
+        //         //         child: Center(
+        //         //           child: Text(
+        //         //             'Horários',
+        //         //             textAlign: TextAlign.center,
+        //         //             style: Theme.of(context).textTheme.headline6,
+        //         //           ),
+        //         //         ),
+        //         //       ),
+        //         //     ),
+        //         //     InkResponse(
+        //         //       onTap: () =>
+        //         //           (Router.of(context).routerDelegate as Delegate)
+        //         //               .push(eventsPageConfig),
+        //         //       child: Card(
+        //         //         clipBehavior: Clip.antiAliasWithSaveLayer,
+        //         //         color: const Color(0xFFF5F5F5),
+        //         //         elevation: 0,
+        //         //         shape: RoundedRectangleBorder(
+        //         //           borderRadius: BorderRadius.circular(48),
+        //         //         ),
+        //         //         child: Center(
+        //         //           child: Text(
+        //         //             'Eventos',
+        //         //             textAlign: TextAlign.center,
+        //         //             style: Theme.of(context).textTheme.headline6,
+        //         //           ),
+        //         //         ),
+        //         //       ),
+        //         //     ),
+        //         //     InkResponse(
+        //         //       onTap: () =>
+        //         //           (Router.of(context).routerDelegate as Delegate)
+        //         //               .push(filesPageConfig),
+        //         //       child: Card(
+        //         //         clipBehavior: Clip.antiAliasWithSaveLayer,
+        //         //         color: const Color(0xFFF5F5F5),
+        //         //         elevation: 0,
+        //         //         shape: RoundedRectangleBorder(
+        //         //           borderRadius: BorderRadius.circular(48),
+        //         //         ),
+        //         //         child: Center(
+        //         //           child: Text(
+        //         //             'Arquivos',
+        //         //             textAlign: TextAlign.center,
+        //         //             style: Theme.of(context).textTheme.headline6,
+        //         //           ),
+        //         //         ),
+        //         //       ),
+        //         //     ),
+        //         //     InkResponse(
+        //         //       onTap: () =>
+        //         //           (Router.of(context).routerDelegate as Delegate)
+        //         //               .push(schedulesPageConfig),
+        //         //       child: Card(
+        //         //         clipBehavior: Clip.antiAliasWithSaveLayer,
+        //         //         borderOnForeground: true,
+        //         //         elevation: 0,
+        //         //         color: const Color(0xFFF5F5F5),
+        //         //         shape: RoundedRectangleBorder(
+        //         //           borderRadius: BorderRadius.circular(48),
+        //         //         ),
+        //         //         child: Center(
+        //         //           child: Text(
+        //         //             'Contatos',
+        //         //             textAlign: TextAlign.center,
+        //         //             style: Theme.of(context).textTheme.headline6,
+        //         //           ),
+        //         //         ),
+        //         //       ),
+        //         //     )
+        //         //   ],
+        //         // ),
+        //         Padding(
+        //           padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
+        //           child: Text(
+        //             'Próximos Eventos',
+        //             textAlign: TextAlign.center,
+        //             style: Theme.of(context).textTheme.headline5,
+        //           ),
+        //         ),
+        //         // Expanded(
+        //         //   child: Padding(
+        //         //     padding:
+        //         //         const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+        //         //     child: ListView.builder(
+        //         //       physics: const NeverScrollableScrollPhysics(),
+        //         //       itemCount: _events.length,
+        //         //       itemBuilder: (context, index) {
+        //         //         return Padding(
+        //         //           padding: const EdgeInsets.only(bottom: 8.0),
+        //         //           child: ListTile(
+        //         //             onTap: () {},
+        //         //             title: Text(
+        //         //               _events[index].title!,
+        //         //               style: Theme.of(context).textTheme.headline6,
+        //         //             ),
+        //         //             subtitle: Text(
+        //         //               _events[index].description!,
+        //         //               style: Theme.of(context).textTheme.subtitle2,
+        //         //             ),
+        //         //             trailing: const Icon(
+        //         //               Icons.arrow_forward_ios,
+        //         //               color: Color(0xFF303030),
+        //         //               size: 20,
+        //         //             ),
+        //         //             tileColor: const Color(0xFFF5F5F5),
+        //         //             shape: RoundedRectangleBorder(
+        //         //               borderRadius: BorderRadius.circular(48),
+        //         //             ),
+        //         //           ),
+        //         //         );
+        //         //       },
+        //         //     ),
+        //         //   ),
+        //         // )
+        //       ],
+        //     ),
+        //   ),
+        // ),
+
+        );
   }
 }
