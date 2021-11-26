@@ -16,7 +16,14 @@ class _SplashState extends State<Splash> {
 
   @override
   Widget build(BuildContext context) {
-    return const Text('splash');
+    return Scaffold(
+      body: Center(
+        child: Image.asset(
+          'assets/logo/logo.png',
+          height: 200,
+        ),
+      ),
+    );
   }
 
   @override
@@ -30,7 +37,8 @@ class _SplashState extends State<Splash> {
         // (Router.of(context).routerDelegate as Delegate)
         //     .replace(homePageConfig);
         // } else {
-        (Router.of(context).routerDelegate as Delegate).replace(homePageConfig);
+        (Router.of(context).routerDelegate as Delegate)
+            .replace(loginPageConfig);
         // }
       });
     }

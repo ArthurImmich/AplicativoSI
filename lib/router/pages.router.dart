@@ -3,7 +3,6 @@ import 'package:aplicativosi/pages/events.screen.dart';
 import 'package:aplicativosi/pages/files.screen.dart';
 import 'package:aplicativosi/pages/home.screen.dart';
 import 'package:aplicativosi/pages/login.screen.dart';
-import 'package:aplicativosi/pages/register.screen.dart';
 import 'package:aplicativosi/pages/schedules.screen.dart';
 import 'package:aplicativosi/pages/splash.screen.dart';
 import 'package:flutter/widgets.dart';
@@ -33,8 +32,6 @@ PageConfiguration splashPageConfig =
     PageConfiguration(key: 'Splash', path: splashPath, page: Splash());
 PageConfiguration loginPageConfig =
     PageConfiguration(key: 'Login', path: loginPath, page: Login());
-PageConfiguration registerPageConfig =
-    PageConfiguration(key: 'Register', path: registerPath, page: Register());
 PageConfiguration homePageConfig =
     PageConfiguration(key: 'Home', path: homePath, page: Home());
 PageConfiguration eventsPageConfig =

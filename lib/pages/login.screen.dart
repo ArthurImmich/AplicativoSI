@@ -1,125 +1,81 @@
+import 'package:aplicativosi/router/delegate.router.dart';
+import 'package:aplicativosi/router/pages.router.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
   @override
   LoginState createState() => LoginState();
 }
 
 class LoginState extends State<Login> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  late Delegate _delegate;
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-
+    _delegate = Router.of(context).routerDelegate as Delegate;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          width: size.width,
-          height: size.height,
-          padding: EdgeInsets.only(
-              left: 20,
-              right: 20,
-              bottom: size.height * 0.2,
-              top: size.height * 0.05),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(
-                height: 30,
-              ),
-              Center(
-                child: Container(
-                  width: 72,
-                  height: 72,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                  ),
-                  child: Image.network(
-                    'https://picsum.photos/seed/891/600',
-                  ),
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 46.0),
+                      child: Image.asset(
+                        'assets/logo/logo.png',
+                        height: 150,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16.0),
+                      child: TextFormField(
+                        controller: _nameController,
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: "Matrícula / CPF"),
+                      ),
+                    ),
+                    TextField(
+                      obscureText: true,
+                      controller: _passwordController,
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(), hintText: "Senha"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16.0),
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: TextButton(
+                          onPressed: () => launch(
+                              'https://portal.ufsm.br/usuario/esqueciSenha.html'),
+                          child: Text(
+                            "Esqueceu a senha?",
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () => _delegate.replace(homePageConfig),
+                      child: const Text(
+                        "Login",
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(double.infinity, 42),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  SizedBox(
-                    height: 50,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 1),
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColorLight,
-                        borderRadius: BorderRadius.all(Radius.circular(40))),
-                    child: TextField(
-                      decoration: InputDecoration(
-                          border: InputBorder.none, hintText: "Nome"),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 1),
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColorLight,
-                        borderRadius: BorderRadius.all(Radius.circular(40))),
-                    child: TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                          border: InputBorder.none, hintText: "Senha"),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Esqueceu a senha?",
-                    style: Theme.of(context).textTheme.bodyText1,
-                  )
-                ],
-              ),
-              Column(
-                children: [
-                  ElevatedButton(
-                    onPressed: () => {},
-                    child: Center(
-                        child: Text(
-                      "Login",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )),
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.black)),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  ElevatedButton(
-                    onPressed: () => {},
-                    child: Center(
-                        child: Text(
-                      "Criar conta",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )),
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.black)),
-                      ),
-                    ),
-                  ),
-                ],
-              )
-            ],
+            ),
           ),
         ),
       ),

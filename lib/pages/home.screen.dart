@@ -28,53 +28,56 @@ class _HomeState extends State<Home> {
       title: 'Lorem ipsum dolor...',
       description: 'Lorem ipsum dolor...',
     ),
+    Event(
+      title: 'Lorem ipsum dolor...',
+      description: 'Lorem ipsum dolor...',
+    ),
+    Event(
+      title: 'Lorem ipsum dolor...',
+      description: 'Lorem ipsum dolor...',
+    ),
+    Event(
+      title: 'Lorem ipsum dolor...',
+      description: 'Lorem ipsum dolor...',
+    ),
+    Event(
+      title: 'Lorem ipsum dolor...',
+      description: 'Lorem ipsum dolor...',
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Olá Undefined!',
-                      style: Theme.of(context).textTheme.headline4,
-                    ),
-                    Container(
-                      width: 72,
-                      height: 72,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: Image.network(
-                        'https://picsum.photos/seed/891/600',
-                      ),
-                    )
-                  ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Olá Undefined!',
+          ),
+          actions: const [
+            Padding(
+              padding: EdgeInsets.only(right: 16.0),
+              child: CircleAvatar(
+                radius: 36,
+                backgroundImage: NetworkImage(
+                  'https://picsum.photos/seed/891/600',
                 ),
               ),
-              GridView(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+            ),
+          ],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+          child: CustomScrollView(
+            slivers: <Widget>[
+              SliverGrid(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 1.5,
+                  mainAxisSpacing: 10.0,
+                  crossAxisSpacing: 10.0,
+                  childAspectRatio: 1.0,
                 ),
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: [
+                delegate: SliverChildListDelegate([
                   InkResponse(
                     onTap: () => (Router.of(context).routerDelegate as Delegate)
                         .push(schedulesPageConfig),
@@ -151,50 +154,48 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                  )
-                ],
+                  ),
+                ]),
               ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
-                child: Text(
-                  'Próximos Eventos',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline5,
-                ),
-              ),
-              Expanded(
+              SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
-                  child: ListView.builder(
-                    itemCount: _events.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: ListTile(
-                          onTap: () {},
-                          title: Text(
-                            _events[index].title!,
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                          subtitle: Text(
-                            _events[index].description!,
-                            style: Theme.of(context).textTheme.subtitle2,
-                          ),
-                          trailing: const Icon(
-                            Icons.arrow_forward_ios,
-                            color: Color(0xFF303030),
-                            size: 20,
-                          ),
-                          tileColor: const Color(0xFFF5F5F5),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(48),
-                          ),
-                        ),
-                      );
-                    },
+                  padding: const EdgeInsets.only(top: 24, bottom: 16),
+                  child: Text(
+                    'Próximos Eventos',
+                    style: Theme.of(context).textTheme.headline5,
                   ),
                 ),
-              )
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: ListTile(
+                        onTap: () {},
+                        title: Text(
+                          _events[index].title!,
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                        subtitle: Text(
+                          _events[index].description!,
+                          style: Theme.of(context).textTheme.subtitle2,
+                        ),
+                        trailing: const Icon(
+                          Icons.arrow_forward_ios,
+                          color: Color(0xFF303030),
+                          size: 20,
+                        ),
+                        tileColor: const Color(0xFFF5F5F5),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(48),
+                        ),
+                      ),
+                    );
+                  },
+                  childCount: _events.length,
+                ),
+              ),
             ],
           ),
         ),
