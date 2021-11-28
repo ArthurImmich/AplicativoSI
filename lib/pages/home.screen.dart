@@ -137,7 +137,7 @@ class _HomeState extends State<Home> {
                   ),
                   InkResponse(
                     onTap: () => (Router.of(context).routerDelegate as Delegate)
-                        .push(schedulesPageConfig),
+                        .push(contactsPageConfig),
                     child: Card(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       borderOnForeground: true,
