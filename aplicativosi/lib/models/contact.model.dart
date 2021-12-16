@@ -1,3 +1,5 @@
+import 'dart:async';
+
 typedef Json = Map<String, dynamic>;
 
 class Contact {
@@ -15,6 +17,11 @@ class Contact {
       : name = json['name'],
         email = json['email'],
         image = json['image'];
+
+  static StreamTransformer<dynamic, Contact> get decoder =>
+      StreamTransformer.fromHandlers(
+          handleData: (json, EventSink sink) =>
+              sink.add(Contact.fromJson(json)));
 
   Json get json => {
         'name': name,

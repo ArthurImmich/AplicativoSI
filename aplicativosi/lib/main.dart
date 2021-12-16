@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
             fontWeight: FontWeight.w500,
             color: Colors.white,
           ),
-          toolbarHeight: 100,
+          toolbarHeight: 80,
           backgroundColor: Color.fromRGBO(73, 114, 177, 1),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(

@@ -29,18 +29,26 @@ class Contacts extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.builder(
+              padding: EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
               itemCount: contacts.length,
               itemBuilder: (context, i) {
-                return ListTile(
-                  leading: Icon(
-                    Icons.account_circle,
-                    size: 30,
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 12.0),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.account_circle,
+                      size: 40,
+                    ),
+                    title: Text(
+                      contacts[i].name,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(contacts[i].email),
+                    tileColor: const Color(0xFFF5F5F5),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(48),
+                    ),
                   ),
-                  title: Text(
-                    contacts[i].name,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: Text(contacts[i].email),
                 );
               },
             ),

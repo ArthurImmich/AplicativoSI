@@ -8,6 +8,7 @@ class Event {
   DateTime? timeStart;
   DateTime? timeEnd;
 
+  @override
   Event({
     this.title,
     this.description,

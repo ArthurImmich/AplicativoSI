@@ -41,4 +41,4 @@ PageConfiguration contactsPageConfig =
 PageConfiguration schedulesPageConfig =
     PageConfiguration(key: 'Schedules', path: schedulesPath, page: Schedules());
 PageConfiguration filesPageConfig =
-    PageConfiguration(key: 'files', path: filesPath, page: Files());
+    PageConfiguration(key: 'files', path: filesPath, page: SIFiles());

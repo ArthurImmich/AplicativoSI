@@ -1,3 +1,5 @@
+import 'dart:async';
+
 typedef Json = Map<String, dynamic>;
 
 class Schedule {
@@ -16,8 +18,13 @@ class Schedule {
   Schedule.fromJson(Json json)
       : title = json['title'],
         description = json['description'],
-        timeStart = json['timeStart'],
-        timeEnd = json['timeEnd'];
+        timeStart = DateTime.parse(json['timeStart']),
+        timeEnd = DateTime.parse(json['timeEnd']);
+
+  static StreamTransformer<dynamic, Schedule> get decoder =>
+      StreamTransformer.fromHandlers(
+          handleData: (json, EventSink sink) =>
+              sink.add(Schedule.fromJson(json)));
 
   Json get json => {
         'title': title,

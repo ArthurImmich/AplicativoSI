@@ -1,4 +1,6 @@
+import 'package:aplicativosi/blocs/events.bloc.dart';
 import 'package:aplicativosi/models/event.model.dart';
+import 'package:aplicativosi/resources/events.provider.dart';
 import 'package:aplicativosi/router/delegate.router.dart';
 import 'package:aplicativosi/router/pages.router.dart';
 import 'package:flutter/material.dart';
@@ -11,40 +13,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final List<Event> _events = [
-    Event(
-      title: 'Lorem ipsum dolor...',
-      description: 'Lorem ipsum dolor...',
-    ),
-    Event(
-      title: 'Lorem ipsum dolor...',
-      description: 'Lorem ipsum dolor...',
-    ),
-    Event(
-      title: 'Lorem ipsum dolor...',
-      description: 'Lorem ipsum dolor...',
-    ),
-    Event(
-      title: 'Lorem ipsum dolor...',
-      description: 'Lorem ipsum dolor...',
-    ),
-    Event(
-      title: 'Lorem ipsum dolor...',
-      description: 'Lorem ipsum dolor...',
-    ),
-    Event(
-      title: 'Lorem ipsum dolor...',
-      description: 'Lorem ipsum dolor...',
-    ),
-    Event(
-      title: 'Lorem ipsum dolor...',
-      description: 'Lorem ipsum dolor...',
-    ),
-    Event(
-      title: 'Lorem ipsum dolor...',
-      description: 'Lorem ipsum dolor...',
-    ),
-  ];
+  late Future<List<Event>> _events;
+  late final EventsBloc _eventsBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _eventsBloc = EventsBloc();
+    _eventsBloc.fetchPlaces();
+    _events = _eventsBloc.blocStream.toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +36,7 @@ class _HomeState extends State<Home> {
             Padding(
               padding: EdgeInsets.only(right: 16.0),
               child: CircleAvatar(
-                radius: 36,
+                radius: 32,
                 backgroundImage: NetworkImage(
                   'https://picsum.photos/seed/891/600',
                 ),
@@ -66,11 +44,11 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-          child: CustomScrollView(
-            slivers: <Widget>[
-              SliverGrid(
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverPadding(
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+              sliver: SliverGrid(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 10.0,
@@ -157,7 +135,10 @@ class _HomeState extends State<Home> {
                   ),
                 ]),
               ),
-              SliverToBoxAdapter(
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              sliver: SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 24, bottom: 16),
                   child: Text(
@@ -166,38 +147,55 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: ListTile(
-                        onTap: () {},
-                        title: Text(
-                          _events[index].title!,
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                        subtitle: Text(
-                          _events[index].description!,
-                          style: Theme.of(context).textTheme.subtitle2,
-                        ),
-                        trailing: const Icon(
-                          Icons.arrow_forward_ios,
-                          color: Color(0xFF303030),
-                          size: 20,
-                        ),
-                        tileColor: const Color(0xFFF5F5F5),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(48),
-                        ),
-                      ),
-                    );
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              sliver: SliverFillRemaining(
+                child: FutureBuilder(
+                  future: _events,
+                  builder: (context, AsyncSnapshot<List<Event>> snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 12.0),
+                            child: ListTile(
+                              onTap: () {},
+                              title: Text(
+                                snapshot.data![index].title!,
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                              subtitle: Text(
+                                snapshot.data![index].description!,
+                                style: Theme.of(context).textTheme.subtitle2,
+                              ),
+                              trailing: const Icon(
+                                Icons.arrow_forward_ios,
+                                color: Color(0xFF303030),
+                                size: 20,
+                              ),
+                              tileColor: const Color(0xFFF5F5F5),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(48),
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    } else if (snapshot.hasError) {
+                      return Center(child: Text('Error: ${snapshot.error}'));
+                    } else {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
                   },
-                  childCount: _events.length,
                 ),
               ),
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );
