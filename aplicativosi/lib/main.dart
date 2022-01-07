@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'router/backButton.router.dart';
 import 'router/delegate.router.dart';
 import 'router/parser.router.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() => runApp(const MyApp());
 

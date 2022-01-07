@@ -32,13 +32,109 @@ class _HomeState extends State<Home> {
           title: const Text(
             'Olá Undefined!',
           ),
-          actions: const [
+          actions: [
             Padding(
-              padding: EdgeInsets.only(right: 16.0),
-              child: CircleAvatar(
-                radius: 32,
-                backgroundImage: NetworkImage(
-                  'https://picsum.photos/seed/891/600',
+              padding: EdgeInsets.only(right: 12),
+              child: Center(
+                child: InkWell(
+                  radius: 100,
+                  borderRadius: BorderRadius.circular(100),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: CircleAvatar(
+                      radius: 28,
+                      backgroundImage: NetworkImage(
+                        'https://picsum.photos/seed/891/600',
+                      ),
+                    ),
+                  ),
+                  onTap: () {
+                    showModalBottomSheet<void>(
+                      context: context,
+                      enableDrag: true,
+                      builder: (BuildContext context) {
+                        return Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Container(
+                            padding: EdgeInsets.fromLTRB(16, 4, 16, 16),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white),
+                            child: ListView(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              children: [
+                                FractionallySizedBox(
+                                  widthFactor: 0.25,
+                                  child: Container(
+                                    margin: const EdgeInsets.symmetric(
+                                      vertical: 12.0,
+                                    ),
+                                    child: Container(
+                                      height: 5.0,
+                                      decoration: BoxDecoration(
+                                        color: Colors.black38,
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(2.5)),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                ListTile(
+                                  title: Text("Horários"),
+                                  trailing: Icon(Icons.schedule),
+                                  onTap: () => (Router.of(context)
+                                          .routerDelegate as Delegate)
+                                      .push(schedulesPageConfig),
+                                ),
+                                Divider(),
+                                ListTile(
+                                  title: Text("Eventos"),
+                                  trailing: Icon(Icons.event),
+                                  onTap: () => (Router.of(context)
+                                          .routerDelegate as Delegate)
+                                      .push(eventsPageConfig),
+                                ),
+                                Divider(),
+                                ListTile(
+                                  title: Text("Arquivos"),
+                                  trailing: Icon(Icons.file_copy),
+                                  onTap: () => (Router.of(context)
+                                          .routerDelegate as Delegate)
+                                      .push(filesPageConfig),
+                                ),
+                                Divider(),
+                                ListTile(
+                                  title: Text("Contatos"),
+                                  trailing: Icon(Icons.person),
+                                  onTap: () => (Router.of(context)
+                                          .routerDelegate as Delegate)
+                                      .push(contactsPageConfig),
+                                ),
+                                Divider(),
+                                ListTile(
+                                  title: Text("Notificações"),
+                                  trailing: Icon(Icons.notifications),
+                                  onTap: () => (Router.of(context)
+                                          .routerDelegate as Delegate)
+                                      .push(notificationsPageConfig),
+                                ),
+                                Divider(),
+                                ListTile(
+                                  title: Text("Sair"),
+                                  trailing: Icon(Icons.logout),
+                                  onTap: () {},
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      backgroundColor: Colors.transparent,
+                      elevation: 30,
+                      isScrollControlled: true,
+                    );
+                  },
                 ),
               ),
             ),
