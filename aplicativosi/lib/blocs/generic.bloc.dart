@@ -12,7 +12,7 @@ abstract class GenericBloc<P extends GenericProvider<S>, S> {
       : this.provider = provider,
         _stateStreamController = StreamController<S>();
 
-  void fetchPlaces() {
+  void fetch() {
     provider.fetchPlaces(_blocSink);
   }
 
