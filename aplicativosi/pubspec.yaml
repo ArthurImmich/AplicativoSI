@@ -37,6 +37,7 @@ dependencies:
   url_launcher: ^6.0.12
   calendar_agenda: ^0.0.2+3
   google_fonts: ^2.2.0
+  open_file: ^3.2.1
 
 dev_dependencies:
   flutter_test:

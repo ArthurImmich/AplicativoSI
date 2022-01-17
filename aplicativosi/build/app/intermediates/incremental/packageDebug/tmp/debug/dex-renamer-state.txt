@@ -1,4 +1,4 @@
-#Thu Jan 06 13:15:04 BRT 2022
-base.0=D\:\\grupoAplicativoSi-ArthurImmichAlexsanderHornJosePerlin-Primeira Entrega\\aplicativosi\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Mon Jan 17 00:09:18 BRT 2022
+base.0=D\:\\AplicativoSI\\aplicativosi\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
