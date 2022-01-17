@@ -7,7 +7,7 @@ import 'package:http/http.dart';
 
 class ContactsProvider implements GenericProvider<Contact> {
   @override
-  void fetchPlaces(StreamSink<Contact> _blocSink) {
+  void fetch(StreamSink<Contact> _blocSink) {
     final _serverUri =
         Uri(scheme: 'http', host: HOST, port: PORT, path: '/contacts/fetch');
     //makes the request

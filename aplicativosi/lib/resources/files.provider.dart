@@ -7,7 +7,7 @@ import 'package:aplicativosi/server.config.dart';
 
 class SIFilesProvider implements GenericProvider<SIFile> {
   @override
-  void fetchPlaces(StreamSink<SIFile> _blocSink) {
+  void fetch(StreamSink<SIFile> _blocSink) {
     final _serverUri =
         Uri(scheme: 'http', host: HOST, port: PORT, path: '/files/fetch');
     //makes the request

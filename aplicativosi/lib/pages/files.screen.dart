@@ -10,15 +10,13 @@ class SIFiles extends StatefulWidget {
 }
 
 class _SIFilesState extends State<SIFiles> {
-  late Future<List<SIFile>> _files;
   late final SIFilesBloc _filesBloc;
 
   @override
   void initState() {
     super.initState();
     _filesBloc = SIFilesBloc();
-    _filesBloc.fetchPlaces();
-    _files = _filesBloc.blocStream.toList();
+    _filesBloc.fetch();
   }
 
   @override
@@ -34,7 +32,7 @@ class _SIFilesState extends State<SIFiles> {
         title: Text("Arquivos"),
       ),
       body: FutureBuilder(
-        future: _files,
+        future: _filesBloc.data,
         builder: (context, AsyncSnapshot<List<SIFile>> snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(

@@ -11,15 +11,13 @@ class Events extends StatefulWidget {
 }
 
 class _EventsState extends State<Events> {
-  late Future<List<Event>> _events;
   late final EventsBloc _eventsBloc;
 
   @override
   void initState() {
     super.initState();
     _eventsBloc = EventsBloc();
-    _eventsBloc.fetchPlaces();
-    _events = _eventsBloc.blocStream.toList();
+    _eventsBloc.fetch();
   }
 
   @override

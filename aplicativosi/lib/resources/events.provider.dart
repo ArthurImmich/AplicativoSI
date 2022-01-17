@@ -7,7 +7,7 @@ import 'package:aplicativosi/server.config.dart';
 
 class EventsProvider implements GenericProvider<Event> {
   @override
-  void fetchPlaces(StreamSink<Event> _blocSink) {
+  void fetch(StreamSink<Event> _blocSink) {
     final _serverUri =
         Uri(scheme: 'http', host: HOST, port: PORT, path: '/events/fetch');
     //makes the request

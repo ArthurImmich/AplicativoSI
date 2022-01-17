@@ -7,7 +7,7 @@ import 'package:aplicativosi/server.config.dart';
 
 class SchedulesProvider implements GenericProvider<Schedule> {
   @override
-  void fetchPlaces(StreamSink<Schedule> _blocSink) {
+  void fetch(StreamSink<Schedule> _blocSink) {
     final _serverUri =
         Uri(scheme: 'http', host: HOST, port: PORT, path: '/schedules/fetch');
     //makes the request

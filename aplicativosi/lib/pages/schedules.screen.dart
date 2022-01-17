@@ -12,7 +12,6 @@ class Schedules extends StatefulWidget {
 }
 
 class _SchedulesState extends State<Schedules> {
-  late Future<List<Schedule>> _schedules;
   late final SchedulesBloc _schedulesBloc;
   late DateFormat _dateFormat;
 
@@ -20,8 +19,7 @@ class _SchedulesState extends State<Schedules> {
   void initState() {
     super.initState();
     _schedulesBloc = SchedulesBloc();
-    _schedulesBloc.fetchPlaces();
-    _schedules = _schedulesBloc.blocStream.toList();
+    _schedulesBloc.fetch();
     _dateFormat = DateFormat("HH:mm");
   }
 
@@ -44,7 +42,7 @@ class _SchedulesState extends State<Schedules> {
           onDateSelected: (DateTime date) {},
         ),
         body: FutureBuilder(
-          future: _schedules,
+          future: _schedulesBloc.data,
           builder: (context, AsyncSnapshot<List<Schedule>> snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(

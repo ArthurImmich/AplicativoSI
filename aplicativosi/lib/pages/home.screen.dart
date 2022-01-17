@@ -1,6 +1,5 @@
 import 'package:aplicativosi/blocs/events.bloc.dart';
 import 'package:aplicativosi/models/event.model.dart';
-import 'package:aplicativosi/resources/events.provider.dart';
 import 'package:aplicativosi/router/delegate.router.dart';
 import 'package:aplicativosi/router/pages.router.dart';
 import 'package:flutter/material.dart';
@@ -13,15 +12,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late Future<List<Event>> _events;
   late final EventsBloc _eventsBloc;
 
   @override
   void initState() {
     super.initState();
     _eventsBloc = EventsBloc();
-    _eventsBloc.fetchPlaces();
-    _events = _eventsBloc.blocStream.toList();
+    _eventsBloc.fetch();
   }
 
   @override
@@ -248,7 +245,7 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               sliver: SliverFillRemaining(
                 child: FutureBuilder(
-                  future: _events,
+                  future: _eventsBloc.data,
                   builder: (context, AsyncSnapshot<List<Event>> snapshot) {
                     if (snapshot.hasData) {
                       return ListView.builder(

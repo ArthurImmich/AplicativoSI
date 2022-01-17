@@ -7,7 +7,7 @@ import 'package:http/http.dart';
 
 class NotificationsProvider implements GenericProvider<Notification> {
   @override
-  void fetchPlaces(StreamSink<Notification> _blocSink) {
+  void fetch(StreamSink<Notification> _blocSink) {
     final _serverUri = Uri(
         scheme: 'http', host: HOST, port: PORT, path: '/notifications/fetch');
     //makes the request
