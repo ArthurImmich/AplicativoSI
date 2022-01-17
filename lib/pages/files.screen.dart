@@ -35,6 +35,7 @@ class _FilesState extends State<Files> {
             child: ListView.builder(
               itemCount: files.length,
               itemBuilder: (context, i) {
+                snapshot.data![index].checkFile();
                 return ListTile(
                   title: Text(
                     files[i].name,
@@ -48,7 +49,11 @@ class _FilesState extends State<Files> {
                           : Icons.download_for_offline,
                       size: 24,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      snapshot.data![index].downloaded
+                          ? snapshot.data![index].openFile()
+                          : snapshot.data![index].downloadFile();
+                    },
                   ),
                 );
               },
