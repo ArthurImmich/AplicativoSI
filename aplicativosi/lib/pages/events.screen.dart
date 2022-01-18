@@ -40,7 +40,7 @@ class _EventsState extends State<Events> {
           },
         ),
         body: FutureBuilder(
-          future: _events,
+          future: _eventsBloc.data,
           builder: (context, AsyncSnapshot<List<Event>> snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(
