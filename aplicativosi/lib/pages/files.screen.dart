@@ -40,9 +40,9 @@ class _SIFilesState extends State<SIFiles> {
               itemCount: snapshot.data!.length,
               itemBuilder: (BuildContext context, int index) {
                 Future.delayed(Duration.zero, () async {
-                  bool downloaded = await SIFilesBloc.checkFile(snapshot[index]);
+                  bool downloaded = await SIFilesBloc.checkFile(snapshot.data![index]);
                   setState(() {
-                    snapshot[index].downloaded = downloaded;
+                    snapshot.data![index].downloaded = downloaded;
                   });
                 });
                 return Padding(
@@ -67,9 +67,9 @@ class _SIFilesState extends State<SIFiles> {
                           })
                           : Future.delayed(Duration.zero, () async {
                           bool downloaded =
-                              await SIFilesBloc.downloadFile(snapshot[index]);
+                              await SIFilesBloc.downloadFile(snapshot.data![index]);
                           setState(() {
-                            snapshot[index].downloaded = downloaded;
+                            snapshot.data![index].downloaded = downloaded;
                           });
                         });
                     ),
