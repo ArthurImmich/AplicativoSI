@@ -11,10 +11,11 @@ import 'package:flutter/foundation.dart';
 class SIFilesBloc extends GenericBloc<SIFilesProvider, SIFile> {
   SIFilesBloc() : super(SIFilesProvider());
   
-  static void checkFile(SIFile file) async {
+  static Future<bool> checkFile(SIFile file) async {
     Directory appDocDir = await getApplicationDocumentsDirectory();
     file.path = appDocDir.path;
     file.downloaded = File(file.path + file.name).existsSync();
+    return file.downloaded;
   }
 
   static void openFile(SIFile file) {
@@ -24,7 +25,10 @@ class SIFilesBloc extends GenericBloc<SIFilesProvider, SIFile> {
   static Future<bool> downloadFile(SIFile data) async {
     HttpClient httpClient = new HttpClient();
     File file;
-    bool downloaded = false;
+    bool downloaded = await File(data.path + data.name).exists();
+    if (downloaded) {
+      return downloaded;
+    }
     try {
       var request = await httpClient.getUrl(Uri.parse(data.link));
       var response = await request.close();
