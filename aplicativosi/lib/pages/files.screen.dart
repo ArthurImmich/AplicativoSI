@@ -39,7 +39,12 @@ class _SIFilesState extends State<SIFiles> {
               padding: EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
               itemCount: snapshot.data!.length,
               itemBuilder: (BuildContext context, int index) {
-                snapshot.data![index].checkFile();
+                Future.delayed(Duration.zero, () async {
+                  bool downloaded = await SIFilesBloc.checkFile(snapshot.data![index]);
+                  setState(() {
+                    snapshot.data![index].downloaded = downloaded;
+                  });
+                });
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 12.0),
                   child: ListTile(
@@ -56,10 +61,17 @@ class _SIFilesState extends State<SIFiles> {
                         size: 24,
                       ),
                       onPressed: () {
-                        snapshot.data![index].downloaded
-                            ? snapshot.data![index].openFile()
-                            : snapshot.data![index].downloadFile();
-                      },
+                        snapshot[index].downloaded
+                          ? setState(() {
+                            SIFilesBloc.openFile(snapshot.data![index]);
+                          })
+                          : Future.delayed(Duration.zero, () async {
+                          bool downloaded =
+                              await SIFilesBloc.downloadFile(snapshot.data![index]);
+                          setState(() {
+                            snapshot.data![index].downloaded = downloaded;
+                          });
+                        });
                     ),
                     tileColor: const Color(0xFFF5F5F5),
                     shape: RoundedRectangleBorder(
