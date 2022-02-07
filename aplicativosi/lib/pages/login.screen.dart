@@ -1,3 +1,5 @@
+import 'package:aplicativosi/router/delegate.router.dart';
+import 'package:aplicativosi/router/pages.router.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -24,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           ElevatedButton(
             onPressed: () {
-              statrSignIn();
+              startSignIn();
             },
             child: Text('Tap to sign in'),
           ),
@@ -33,13 +35,14 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void statrSignIn() async {
-    await googleSignIn.signOut(); //optional
+  void startSignIn() async {
+    await googleSignIn.signOut();
     GoogleSignInAccount? user = await googleSignIn.signIn();
     if (user == null) {
       print('Sign In Failed ');
     } else {
-      Navigator.pushReplacementNamed(context, '/');
+      (Router.of(context).routerDelegate as Delegate)
+          .setNewRoutePath(homePageConfig);
     }
   }
 }

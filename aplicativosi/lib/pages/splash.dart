@@ -1,3 +1,5 @@
+import 'package:aplicativosi/router/delegate.router.dart';
+import 'package:aplicativosi/router/pages.router.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -36,13 +38,13 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void checkSignInStatus() async {
-    await Future.delayed(Duration(seconds: 2));
     bool isSignedIn = await googleSignIn.isSignedIn();
     if (isSignedIn) {
-      print('user signed in');
-      Navigator.pushReplacementNamed(context, '/profile');
+      (Router.of(context).routerDelegate as Delegate)
+          .setNewRoutePath(homePageConfig);
     } else {
-      Navigator.pushReplacementNamed(context, '/login');
+      (Router.of(context).routerDelegate as Delegate)
+          .setNewRoutePath(loginPageConfig);
     }
   }
 }
