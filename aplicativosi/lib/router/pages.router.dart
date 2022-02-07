@@ -33,7 +33,7 @@ class PageConfiguration {
 PageConfiguration splashPageConfig =
     PageConfiguration(key: 'Splash', path: splashPath, page: Splash());
 PageConfiguration loginPageConfig =
-    PageConfiguration(key: 'Login', path: loginPath, page: Login());
+    PageConfiguration(key: 'Login', path: loginPath, page: LoginScreen());
 PageConfiguration homePageConfig =
     PageConfiguration(key: 'Home', path: homePath, page: Home());
 PageConfiguration eventsPageConfig =
