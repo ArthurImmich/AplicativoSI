@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:aplicativosi/resources/generic.provider.dart';
+import 'package:aplicativosi/resources/generic.repository.dart';
 
-abstract class GenericBloc<P extends GenericProvider<S>, S> {
+abstract class GenericBloc<P extends GenericRepository<S>, S> {
   late final P provider;
   late final StreamController<S> _stateStreamController;
   late Future<List<S>> data;

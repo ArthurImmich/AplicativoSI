@@ -1,6 +1,6 @@
 import 'package:aplicativosi/blocs/generic.bloc.dart';
 import 'package:aplicativosi/models/file.model.dart';
-import 'package:aplicativosi/resources/files.provider.dart';
+import 'package:aplicativosi/resources/files.repository.dart';
 
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
@@ -8,9 +8,9 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 
-class SIFilesBloc extends GenericBloc<SIFilesProvider, SIFile> {
-  SIFilesBloc() : super(SIFilesProvider());
-  
+class SIFilesBloc extends GenericBloc<SIFilesRepository, SIFile> {
+  SIFilesBloc() : super(SIFilesRepository());
+
   static Future<bool> checkFile(SIFile file) async {
     Directory appDocDir = await getApplicationDocumentsDirectory();
     file.path = appDocDir.path;

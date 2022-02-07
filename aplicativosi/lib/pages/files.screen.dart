@@ -40,7 +40,8 @@ class _SIFilesState extends State<SIFiles> {
               itemCount: snapshot.data!.length,
               itemBuilder: (BuildContext context, int index) {
                 Future.delayed(Duration.zero, () async {
-                  bool downloaded = await SIFilesBloc.checkFile(snapshot.data![index]);
+                  bool downloaded =
+                      await SIFilesBloc.checkFile(snapshot.data![index]);
                   setState(() {
                     snapshot.data![index].downloaded = downloaded;
                   });
@@ -61,17 +62,19 @@ class _SIFilesState extends State<SIFiles> {
                         size: 24,
                       ),
                       onPressed: () {
-                        snapshot[index].downloaded
-                          ? setState(() {
-                            SIFilesBloc.openFile(snapshot.data![index]);
-                          })
-                          : Future.delayed(Duration.zero, () async {
-                          bool downloaded =
-                              await SIFilesBloc.downloadFile(snapshot.data![index]);
-                          setState(() {
-                            snapshot.data![index].downloaded = downloaded;
-                          });
-                        });
+                        snapshot.data![index].downloaded
+                            ? setState(() {
+                                SIFilesBloc.openFile(snapshot.data![index]);
+                              })
+                            : Future.delayed(Duration.zero, () async {
+                                bool downloaded =
+                                    await SIFilesBloc.downloadFile(
+                                        snapshot.data![index]);
+                                setState(() {
+                                  snapshot.data![index].downloaded = downloaded;
+                                });
+                              });
+                      },
                     ),
                     tileColor: const Color(0xFFF5F5F5),
                     shape: RoundedRectangleBorder(

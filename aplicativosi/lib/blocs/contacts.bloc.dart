@@ -1,7 +1,7 @@
 import 'package:aplicativosi/blocs/generic.bloc.dart';
 import 'package:aplicativosi/models/contact.model.dart';
-import 'package:aplicativosi/resources/contacts.provider.dart';
+import 'package:aplicativosi/resources/contacts.repository.dart';
 
-class ContactsBloc extends GenericBloc<ContactsProvider, Contact> {
-  ContactsBloc() : super(ContactsProvider());
+class ContactsBloc extends GenericBloc<ContactsRepository, Contact> {
+  ContactsBloc() : super(ContactsRepository());
 }
