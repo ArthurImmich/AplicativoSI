@@ -1,7 +1,4 @@
-import 'package:aplicativosi/router/delegate.router.dart';
-import 'package:aplicativosi/router/pages.router.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -25,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
             "Logue com o google",
             style: TextStyle(fontSize: 30),
           ),
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {
               statrSignIn();
             },
