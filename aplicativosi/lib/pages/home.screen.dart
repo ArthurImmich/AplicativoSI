@@ -120,7 +120,11 @@ class _HomeState extends State<Home> {
                                 ListTile(
                                   title: Text("Sair"),
                                   trailing: Icon(Icons.logout),
-                                  onTap: () {},
+                                  onTap: () {
+                                    (Router.of(context).routerDelegate
+                                            as Delegate)
+                                        .logOut();
+                                  },
                                 ),
                               ],
                             ),

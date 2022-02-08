@@ -8,11 +8,11 @@ class Delegate extends RouterDelegate<PageConfiguration>
   //Pages list
   final List<Page> _pages = [];
 
-  GoogleSignIn googleSignIn = GoogleSignIn(
+  GoogleSignIn _googleSignIn = GoogleSignIn(
       clientId:
           "1007354186909-i4tbpd6678kom3qnd0vcni3mebr4gs60.apps.googleusercontent.com");
 
-  GoogleSignInAccount? user;
+  GoogleSignInAccount? _user;
 
   //Back button dispatcher
   late final BackButtonDispatcher backButtonDispatcher;
@@ -75,14 +75,20 @@ class Delegate extends RouterDelegate<PageConfiguration>
   }
 
   Future<bool> isAuthenticated(PageConfiguration page) async =>
-      !page.authentication || await googleSignIn.isSignedIn() ? true : false;
+      !page.authentication || await _googleSignIn.isSignedIn() ? true : false;
 
   void signIn() {
-    googleSignIn.signOut();
-    googleSignIn.signIn().then((account) => user = account);
-    if (user != null) {
+    _googleSignIn.signOut();
+    _googleSignIn.signIn().then((account) => _user = account);
+    if (_user != null) {
       setNewRoutePath(homePageConfig);
     }
+  }
+
+  void logOut() {
+    _googleSignIn.signOut();
+    _user = null;
+    setNewRoutePath(splashPageConfig);
   }
 
   void push(PageConfiguration pageConfig) {
