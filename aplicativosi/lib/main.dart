@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'router/backButton.router.dart';
 import 'router/delegate.router.dart';
 import 'router/parser.router.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void main() => runApp(const MyApp());
 
@@ -39,7 +38,7 @@ class _HomePageState extends State<HomePage> {
     _parser = Parser();
     _backButtonDispatcher = BackDispatcher(_delegate);
     if (!mounted) return;
-    setState(() => _delegate.push(splashPageConfig));
+    _delegate.setNewRoutePath(splashPageConfig);
     super.initState();
   }
 

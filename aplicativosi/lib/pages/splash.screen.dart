@@ -1,7 +1,9 @@
 import 'dart:async';
+
 import 'package:aplicativosi/router/delegate.router.dart';
 import 'package:aplicativosi/router/pages.router.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -11,8 +13,6 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  bool _initialized = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,18 +28,8 @@ class _SplashState extends State<Splash> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
-    if (!_initialized) {
-      _initialized = true;
-      Timer(const Duration(milliseconds: 2000), () {
-        // if (loggedIn) {
-        // (Router.of(context).routerDelegate as Delegate)
-        //     .replace(homePageConfig);
-        // } else {
-        (Router.of(context).routerDelegate as Delegate)
-            .replace(loginPageConfig);
-        // }
-      });
-    }
+    Timer(const Duration(milliseconds: 2000), () {
+      (Router.of(context).routerDelegate as Delegate).push(homePageConfig);
+    });
   }
 }

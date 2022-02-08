@@ -21,28 +21,60 @@ const String notificationsPath = '/notifications';
 class PageConfiguration {
   final String key;
   String path;
+  bool authentication;
   Widget page;
 
   PageConfiguration({
     required this.key,
     required this.path,
     required this.page,
+    this.authentication = false,
   });
 }
 
-PageConfiguration splashPageConfig =
-    PageConfiguration(key: 'Splash', path: splashPath, page: Splash());
-PageConfiguration loginPageConfig =
-    PageConfiguration(key: 'Login', path: loginPath, page: LoginScreen());
-PageConfiguration homePageConfig =
-    PageConfiguration(key: 'Home', path: homePath, page: Home());
-PageConfiguration eventsPageConfig =
-    PageConfiguration(key: 'Events', path: eventsPath, page: Events());
-PageConfiguration contactsPageConfig =
-    PageConfiguration(key: 'Contacts', path: contactsPath, page: Contacts());
-PageConfiguration schedulesPageConfig =
-    PageConfiguration(key: 'Schedules', path: schedulesPath, page: Schedules());
-PageConfiguration filesPageConfig =
-    PageConfiguration(key: 'Files', path: filesPath, page: SIFiles());
+PageConfiguration splashPageConfig = PageConfiguration(
+  key: 'Splash',
+  path: splashPath,
+  page: Splash(),
+);
+PageConfiguration loginPageConfig = PageConfiguration(
+  key: 'Login',
+  path: loginPath,
+  page: LoginScreen(),
+);
+PageConfiguration homePageConfig = PageConfiguration(
+  key: 'Home',
+  path: homePath,
+  page: Home(),
+  authentication: true,
+);
+PageConfiguration eventsPageConfig = PageConfiguration(
+  key: 'Events',
+  path: eventsPath,
+  page: Events(),
+  authentication: true,
+);
+PageConfiguration contactsPageConfig = PageConfiguration(
+  key: 'Contacts',
+  path: contactsPath,
+  page: Contacts(),
+  authentication: true,
+);
+PageConfiguration schedulesPageConfig = PageConfiguration(
+  key: 'Schedules',
+  path: schedulesPath,
+  page: Schedules(),
+  authentication: true,
+);
+PageConfiguration filesPageConfig = PageConfiguration(
+  key: 'Files',
+  path: filesPath,
+  page: SIFiles(),
+  authentication: true,
+);
 PageConfiguration notificationsPageConfig = PageConfiguration(
-    key: 'Notifications', path: notificationsPath, page: Notifications());
+  key: 'Notifications',
+  path: notificationsPath,
+  page: Notifications(),
+  authentication: true,
+);

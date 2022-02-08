@@ -1,11 +1,18 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'pages.router.dart';
 
 class Delegate extends RouterDelegate<PageConfiguration>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<PageConfiguration> {
   //Pages list
   final List<Page> _pages = [];
+
+  GoogleSignIn googleSignIn = GoogleSignIn(
+      clientId:
+          "1007354186909-i4tbpd6678kom3qnd0vcni3mebr4gs60.apps.googleusercontent.com");
+
+  GoogleSignInAccount? user;
 
   //Back button dispatcher
   late final BackButtonDispatcher backButtonDispatcher;
@@ -60,28 +67,46 @@ class Delegate extends RouterDelegate<PageConfiguration>
   }
 
   //Replaces last page by a new one
-  void replace(PageConfiguration newPage) {
+  void replace(PageConfiguration pageConfig) {
     if (_pages.isNotEmpty) {
       _pages.removeLast();
     }
-    _pages.add(_newPage(newPage));
-    notifyListeners();
+    push(pageConfig);
+  }
+
+  Future<bool> isAuthenticated(PageConfiguration page) async =>
+      !page.authentication || await googleSignIn.isSignedIn() ? true : false;
+
+  void signIn() {
+    googleSignIn.signOut();
+    googleSignIn.signIn().then((account) => user = account);
+    if (user != null) {
+      setNewRoutePath(homePageConfig);
+    }
   }
 
   void push(PageConfiguration pageConfig) {
-    final shouldAddPage = _pages.isEmpty ||
-        (_pages.last.arguments as PageConfiguration).page != pageConfig.page;
-    if (shouldAddPage) {
-      _pages.add(_newPage(pageConfig));
-    }
+    isAuthenticated(pageConfig).then((authenticated) {
+      if (authenticated) {
+        if (_pages.isEmpty ||
+            (_pages.last.arguments as PageConfiguration).page !=
+                pageConfig.page) {
+          _pages.add(_newPage(pageConfig));
+        }
+      } else {
+        _pages.clear();
+        _pages.add(_newPage(loginPageConfig));
+      }
+    });
     notifyListeners();
   }
 
   //Clears _page list and adds a new page
   //Get the information from parseRouteInformation
   @override
-  Future<void> setNewRoutePath(PageConfiguration configuration) async {
+  Future<void> setNewRoutePath(PageConfiguration pageConfig) async {
     _pages.clear();
-    push(configuration);
+    _pages.add(_newPage(pageConfig));
+    notifyListeners();
   }
 }
