@@ -46,35 +46,35 @@ PageConfiguration homePageConfig = PageConfiguration(
   key: 'Home',
   path: homePath,
   page: Home(),
-  authentication: true,
+  // authentication: true,
 );
 PageConfiguration eventsPageConfig = PageConfiguration(
   key: 'Events',
   path: eventsPath,
   page: Events(),
-  authentication: true,
+  // authentication: true,
 );
 PageConfiguration contactsPageConfig = PageConfiguration(
   key: 'Contacts',
   path: contactsPath,
   page: Contacts(),
-  authentication: true,
+  // authentication: true,
 );
 PageConfiguration schedulesPageConfig = PageConfiguration(
   key: 'Schedules',
   path: schedulesPath,
   page: Schedules(),
-  authentication: true,
+  // authentication: true,
 );
 PageConfiguration filesPageConfig = PageConfiguration(
   key: 'Files',
   path: filesPath,
   page: SIFiles(),
-  authentication: true,
+  // authentication: true,
 );
 PageConfiguration notificationsPageConfig = PageConfiguration(
   key: 'Notifications',
   path: notificationsPath,
   page: Notifications(),
-  authentication: true,
+  // authentication: true,
 );
